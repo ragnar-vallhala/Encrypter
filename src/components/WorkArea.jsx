@@ -30,15 +30,17 @@ function WorkArea() {
   // Function to validate if a character is an uppercase letter
   const isUpperCaseChar = (char) => /^[A-Z]*$/.test(char);
 
-  // Handler to update the Map when input changes
   const handleInputChange = (letter, event) => {
-    const newChar = event.target.value.slice(-1); // Get only the last character
-    if (!isUpperCaseChar(newChar)) { // Only update if it's not an uppercase letter
-      const newMap = new Map(letterMap); // Copy the current map
-      newMap.set(letter, newChar); // Update the specific letter’s value with a single character
-      setLetterMap(newMap); // Set the updated map in state
+    const newChar = event.target.value.slice(-1); // Get only the last character entered
+    const newMap = new Map(letterMap); // Clone the current map to trigger re-render
+    newMap.set(letter, newChar); // Update the specific letter’s value with a single character
+    setLetterMap(newMap); // Set the updated map in state
+    console.log(newChar);
+    if (newChar && !isUpperCaseChar(newChar)) { // Only update if it's not uppercase and not empty
+
     }
   };
+  
 
   // Handle message input to allow all characters except uppercase letters
   const handleMessageChange = (event) => {
